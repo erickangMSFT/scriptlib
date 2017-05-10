@@ -24,3 +24,24 @@ WITH EXPIREDATE  = N'12/31/2049 00:00:00',
         MEDIANAME = 'AdventureWorksDockerBackupMedia',
         NAME = N'AdventureWorks-Full-05-10-2017',
         SKIP, COMPRESSION
+
+
+BACKUP DATABASE [AdventureWorks] TO
+DISK = N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
+WITH 
+        NAME = N'AdventureWorks-Full-05-10-2017',
+        NOFORMAT, NOINIT
+
+BACKUP DATABASE [AdventureWorks] TO
+DISK = N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
+WITH 
+        DIFFERENTIAL, 
+        NAME = N'AdventureWorks-Diff-05-10-2017',
+        NOFORMAT, NOINIT
+
+BACKUP LOG [AdventureWorks] TO
+DISK = N'/var/opt/mssql/backup/AdventureWorksLinux.bak'
+WITH
+        NOFORMAT,
+        NOINIT,
+        NAME = N'AdventureWorks-Log-05-10-2017' 
