@@ -10,7 +10,7 @@ NAME = N'AdventureWorks-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS 
 GO
 
 
--- on Linux
+-- On Linux
 BACKUP DATABASE [Clinic]  TO 
 DISK = N'/var/opt/mssql/backup/clinic.bak'
 With Name = N'Clinic initial backup'
@@ -25,13 +25,14 @@ WITH EXPIREDATE  = N'12/31/2049 00:00:00',
         NAME = N'AdventureWorks-Full-05-10-2017',
         SKIP, COMPRESSION
 
-
+--Full backup
 BACKUP DATABASE [AdventureWorks] TO
 DISK = N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
 WITH 
         NAME = N'AdventureWorks-Full-05-10-2017',
         NOFORMAT, NOINIT
 
+--Differential backup
 BACKUP DATABASE [AdventureWorks] TO
 DISK = N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
 WITH 
@@ -39,6 +40,7 @@ WITH
         NAME = N'AdventureWorks-Diff-05-10-2017',
         NOFORMAT, NOINIT
 
+--Log backup
 BACKUP LOG [AdventureWorks] TO
 DISK = N'/var/opt/mssql/backup/AdventureWorksLinux.bak'
 WITH
