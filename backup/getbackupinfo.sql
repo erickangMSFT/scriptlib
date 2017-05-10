@@ -19,4 +19,4 @@ FROM msdb..backupmediaset
 
 SELECT *
 FROM msdb..backupmediafamily
-WHERE media_set_id = 6
+--WHERE media_set_id = 6
