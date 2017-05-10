@@ -20,3 +20,14 @@ FROM msdb..backupmediaset
 SELECT *
 FROM msdb..backupmediafamily
 --WHERE media_set_id = 6
+
+--
+
+-- N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
+
+Restore Labelonly from disk = N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
+Restore Headeronly from disk = N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
+Restore Filelistonly from disk = N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
+Restore Verifyonly from DISK = N'/var/opt/mssql/backup/AdventureWorksLinux.bak'  
+
+

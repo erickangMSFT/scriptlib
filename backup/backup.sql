@@ -14,3 +14,13 @@ GO
 BACKUP DATABASE [Clinic]  TO 
 DISK = N'/var/opt/mssql/backup/clinic.bak'
 With Name = N'Clinic initial backup'
+
+--Create a new backup set
+BACKUP DATABASE [AdventureWorks] TO
+DISK = N'/var/opt/mssql/backup/AdventureWorksLinux.bak' 
+WITH EXPIREDATE  = N'12/31/2049 00:00:00',
+        FORMAT,
+        INIT,
+        MEDIANAME = 'AdventureWorksDockerBackupMedia',
+        NAME = N'AdventureWorks-Full-05-10-2017',
+        SKIP, COMPRESSION

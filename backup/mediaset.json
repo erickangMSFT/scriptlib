@@ -1,0 +1,17 @@
+[
+  {
+    "MediaName": "AdventureWorksDockerBackupMedia",
+    "MediaSetId": "9a118966-8f32-45b9-839c-e378087b4af2",
+    "FamilyCount": "1",
+    "FamilySequenceNumber": "1",
+    "MediaFamilyId": "37f829ad-0000-0000-0000-000000000000",
+    "MediaSequenceNumber": "1",
+    "MediaLabelPresent": "0",
+    "MediaDescription": null,
+    "SoftwareName": "Microsoft SQL Server",
+    "SoftwareVendorId": "4608",
+    "MediaDate": "2017-05-10 19:46:52.000",
+    "MirrorCount": "1",
+    "IsCompressed": "1"
+  }
+]
