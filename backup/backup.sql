@@ -1,3 +1,6 @@
+-- Description: Sample backup statements
+-- Author: Eric Kang
+
 BACKUP DATABASE [AdventureWorks] TO  
 DISK = N'G:\sqlbackups\Device1\AdventureworkdDevice1.bak',  
 DISK = N'G:\sqlbackups\Device3\AdventureWorksDevice3.bak',  
