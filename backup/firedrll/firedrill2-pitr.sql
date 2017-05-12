@@ -81,13 +81,13 @@ GO
 SELECT [FirstName], [LastName], [Email], [MobileNumber] FROM Heroes;
 GO
 
--- You app noticed something went wrong and reported it.
+-- At this point, your app / customer noticed something has gone wrong and reported it.
 
 -- ************
 -- Recover the lost data with PITR
 --
 
--- Take a tail-log backup to save Hong Gil-Dong.
+-- Take a tail-log backup to save Hong Gil-Dong later.
 USE master
 GO
 ALTER DATABASE [SuperHeroDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
@@ -168,11 +168,3 @@ GO
 SELECT [HeroId], [FirstName], [LastName], [Email], [MobileNumber] FROM Heroes;
 GO
 
--- ........
--- Utility statements
-RESTORE DATABASE [SuperHeroDB]
-WITH RECOVERY
-GO
-
-SELECT db.name, state_desc
-FROM sys.databases db
