@@ -85,7 +85,7 @@ GO
 -- Recovery action
 -- **********************************************
 
--- Create a tal-log backup to recover transactions executed after the last transaction-log backup.
+-- Create a tail-log backup to recover transactions executed after the last transaction-log backup.
 BACKUP LOG [FiredrillDB] TO DISK = N'/var/opt/mssql/backup/FiredrillDB_Log_Tail.bak' WITH INIT, NO_TRUNCATE, NORECOVERY;
 GO
 
