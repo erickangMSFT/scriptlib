@@ -1,0 +1,75 @@
+//Found STOPAT point - "Begin Time": "2017/05/12 03:59:21:010"
+//See readlog.sql
+
+[
+  {
+    "Operation": "LOP_BEGIN_XACT",
+    "Current LSN": "00000024:000000d8:0001",
+    "Begin Time": "2017/05/12 03:59:21:010",
+    "Transaction ID": "0000:00000302",
+    "Transaction Name": "DELETE",
+    "AllocUnitId": null,
+    "AllocUnitName": null,
+    "Description": "2017/05/12 03:59:21:010;DELETE;0x01"
+  },
+  {
+    "Operation": "LOP_DELETE_ROWS",
+    "Current LSN": "00000024:000000d8:0002",
+    "Begin Time": null,
+    "Transaction ID": "0000:00000302",
+    "Transaction Name": null,
+    "AllocUnitId": "72057594049527808",
+    "AllocUnitName": "dbo.Heroes.PK__Heroes__333632633677FE0E",
+    "Description": ""
+  },
+  {
+    "Operation": "LOP_DELETE_ROWS",
+    "Current LSN": "00000024:000000d8:0004",
+    "Begin Time": null,
+    "Transaction ID": "0000:00000302",
+    "Transaction Name": null,
+    "AllocUnitId": "72057594049527808",
+    "AllocUnitName": "dbo.Heroes.PK__Heroes__333632633677FE0E",
+    "Description": ""
+  },
+  {
+    "Operation": "LOP_DELETE_ROWS",
+    "Current LSN": "00000024:000000d8:0005",
+    "Begin Time": null,
+    "Transaction ID": "0000:00000302",
+    "Transaction Name": null,
+    "AllocUnitId": "72057594049527808",
+    "AllocUnitName": "dbo.Heroes.PK__Heroes__333632633677FE0E",
+    "Description": ""
+  },
+  {
+    "Operation": "LOP_DELETE_ROWS",
+    "Current LSN": "00000024:000000d8:0006",
+    "Begin Time": null,
+    "Transaction ID": "0000:00000302",
+    "Transaction Name": null,
+    "AllocUnitId": "72057594049527808",
+    "AllocUnitName": "dbo.Heroes.PK__Heroes__333632633677FE0E",
+    "Description": ""
+  },
+  {
+    "Operation": "LOP_DELETE_ROWS",
+    "Current LSN": "00000024:000000d8:0007",
+    "Begin Time": null,
+    "Transaction ID": "0000:00000302",
+    "Transaction Name": null,
+    "AllocUnitId": "72057594049527808",
+    "AllocUnitName": "dbo.Heroes.PK__Heroes__333632633677FE0E",
+    "Description": ""
+  },
+  {
+    "Operation": "LOP_COMMIT_XACT",
+    "Current LSN": "00000024:000000d8:0008",
+    "Begin Time": null,
+    "Transaction ID": "0000:00000302",
+    "Transaction Name": null,
+    "AllocUnitId": null,
+    "AllocUnitName": null,
+    "Description": "2017/05/12 03:59:21:010"
+  }
+]

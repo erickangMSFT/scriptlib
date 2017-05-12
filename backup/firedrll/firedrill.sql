@@ -1,7 +1,10 @@
 --
 -- This firedrill script is based on 
 -- SQL Server 2017 running on Docker container / Linux host.
---
+
+-- Scenario: Recover database from file corruption
+-- Credit and the original tutorial: https://www.sqlskills.com/blogs/paul/disaster-recovery-101-backing-up-the-tail-of-the-log/ 
+ 
  
 -- Drop the database 'FiredrillDB'
 -- Connect to the 'master' database to run this snippet
@@ -85,9 +88,9 @@ GO
 -- Recovery action
 -- **********************************************
 
--- Create a tal-log backup to recover transactions executed after the last transaction-log backup.
-BACKUP LOG [FiredrillDB] TO DISK = N'/var/opt/mssql/backup/FiredrillDB_Log_Tail.bak' WITH INIT, NO_TRUNCATE, NORECOVERY;
-GO
+
+-- Create a tail-log backup to recover transactions executed after the last transaction-log backup.
+
 
 --Check backups
 
@@ -107,7 +110,9 @@ FROM DISK = N'/var/opt/mssql/backup/FiredrillDB.bak'
 WITH MOVE N'FiredrillDB' TO N'/var/opt/mssql/data/FiredrillDB_recovered.mdf',
     MOVE N'FiredrillDB_log' TO N'/var/opt/mssql/data/FiredrillDB_recovered.ldf',
     NORECOVERY, 
-    REPLACE; -- REPLACE is just to repeat this simulation to replace existing database. This is optional.
+
+    REPLACE; -- REPLACE is just to repeat this simulation and to replace existing database. This is optional.
+
 
 -- 2. Restore transaction-log backup
 RESTORE LOG [FiredrillDB_recovered] FROM DISK = N'/var/opt/mssql/backup/FiredrillDB_Log.bak' 
