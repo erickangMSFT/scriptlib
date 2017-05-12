@@ -1,9 +1,14 @@
+--
+-- This firedrill script is based on 
+-- SQL Server 2017 running on Docker container / Linux host.
+--
+ 
 -- Drop the database 'FiredrillDB'
 -- Connect to the 'master' database to run this snippet
 USE master
 GO
 -- Uncomment the ALTER DATABASE statement below to set the database to SINGLE_USER mode if the drop database command fails because the database is in use.
--- ALTER DATABASE FiredrillDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+ ALTER DATABASE FiredrillDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 -- Drop the database if it exists
 IF EXISTS (
   SELECT name
@@ -47,10 +52,9 @@ GO
 SELECT * FROM TestTable
 GO
 
+-- Change to single user mode and close all active connections.
 USE master;
 GO
-
--- Change to single user mode and close all active connections.
 ALTER DATABASE [FiredrillDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 GO
 
@@ -59,15 +63,15 @@ ALTER DATABASE [FiredrillDB] SET OFFLINE;
 GO
 
 -- Check the database state
-USE master;
-GO
-
 SELECT db.name, state_desc
 FROM sys.databases db
---WHERE db.name = N'FiredrillDB'
+WHERE db.name = N'FiredrillDB'
 GO
 
--- Delete data file using command
+-- **********************************************
+--          Disaster Simulation
+-- **********************************************
+-- Delete data file using following command
 -- e.g. docker exec -i -t <containerid> /bin/bash
 -- docker_prompt> rm -rf /var/opt/mssql/data/FiredrillDB.mdf
 
@@ -75,10 +79,14 @@ GO
 ALTER DATABASE [FiredrillDB] SET ONLINE;
 GO
 
--- Recovery action
--- Create a tal-log backup
 
-BACKUP LOG [FiredrillDB] TO DISK = N'/var/opt/mssql/backup/FiredrillDB_Log_Tail.bak' WITH INIT, NO_TRUNCATE;
+
+-- **********************************************
+-- Recovery action
+-- **********************************************
+
+-- Create a tal-log backup to recover transactions executed after the last transaction-log backup.
+BACKUP LOG [FiredrillDB] TO DISK = N'/var/opt/mssql/backup/FiredrillDB_Log_Tail.bak' WITH INIT, NO_TRUNCATE, NORECOVERY;
 GO
 
 --Check backups
@@ -98,7 +106,8 @@ RESTORE DATABASE [FiredrillDB_recovered]
 FROM DISK = N'/var/opt/mssql/backup/FiredrillDB.bak'
 WITH MOVE N'FiredrillDB' TO N'/var/opt/mssql/data/FiredrillDB_recovered.mdf',
     MOVE N'FiredrillDB_log' TO N'/var/opt/mssql/data/FiredrillDB_recovered.ldf',
-    NORECOVERY, REPLACE;
+    NORECOVERY, 
+    REPLACE; -- REPLACE is just to repeat this simulation to replace existing database. This is optional.
 
 -- 2. Restore transaction-log backup
 RESTORE LOG [FiredrillDB_recovered] FROM DISK = N'/var/opt/mssql/backup/FiredrillDB_Log.bak' 
@@ -117,8 +126,8 @@ SELECT * FROM
 dbo.TestTable
 GO
 
---Cleanup
--- Drop the database 'FiredrillDB_restored'
+-- Cleanup
+-- Drop the database 'FiredrillDB_recovered'
 -- Connect to the 'master' database to run this snippet
 USE master
 GO
