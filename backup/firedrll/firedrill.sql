@@ -107,7 +107,7 @@ FROM DISK = N'/var/opt/mssql/backup/FiredrillDB.bak'
 WITH MOVE N'FiredrillDB' TO N'/var/opt/mssql/data/FiredrillDB_recovered.mdf',
     MOVE N'FiredrillDB_log' TO N'/var/opt/mssql/data/FiredrillDB_recovered.ldf',
     NORECOVERY, 
-    REPLACE; -- REPLACE is just to repeat this simulation to replace existing database. This is optional.
+    REPLACE; -- REPLACE is just to repeat this simulation and to replace existing database. This is optional.
 
 -- 2. Restore transaction-log backup
 RESTORE LOG [FiredrillDB_recovered] FROM DISK = N'/var/opt/mssql/backup/FiredrillDB_Log.bak' 
