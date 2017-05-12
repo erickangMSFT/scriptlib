@@ -61,7 +61,9 @@ SELECT [FirstName], [LastName], [Email], [MobileNumber] FROM Heroes;
 GO
 
 -- Reading from online log
-SELECT  log.[Current LSN],
+SELECT  
+        log.[Operation],
+        log.[Current LSN],
         log.[Begin Time],
         log.[Transaction ID],
         log.[Transaction Name],
@@ -69,8 +71,21 @@ SELECT  log.[Current LSN],
         log.[AllocUnitName],
         log.[Description]
 FROM fn_dblog(null, null) log
-WHERE Operation = 'LOP_DELETE_ROWS'
+WHERE [Transaction Name] = 'DELETE'
 ORDER BY log.[AllocUnitId]
+GO
+
+SELECT  
+        log.[Operation],
+        log.[Current LSN],
+        log.[Begin Time],
+        log.[Transaction ID],
+        log.[Transaction Name],
+        log.[AllocUnitId],
+        log.[AllocUnitName],
+        log.[Description]
+FROM fn_dblog(null, null) log
+WHERE [Transaction ID] = '0000:00000302'
 GO
 
 -- Reading from log backup
@@ -87,4 +102,4 @@ DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
--- WHERE Operation = 'LOP_DELETE_ROWS
+WHERE [Transaction Name] IS NOT NULL;

@@ -1,3 +1,6 @@
+//Found STOPAT point - "Begin Time": "2017/05/12 03:59:21:010"
+//See readlog.sql
+
 [
   {
     "Operation": "LOP_BEGIN_XACT",

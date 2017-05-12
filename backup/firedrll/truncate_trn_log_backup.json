@@ -1,0 +1,67 @@
+/* Detection of STOPAT for TRUNCATE TABLE from transaction_log backup.
+Transaction Begin Time for the problematic Truncate Table: 2017/05/12 02:44:11:947
+
+
+SELECT  [Operation],
+        [Begin Time], 
+        [Current LSN], 
+        [Transaction ID], 
+        [Transaction Name], 
+        [PartitionID], 
+        [TRANSACTION SID]
+FROM fn_dump_dblog (NULL, NULL, N'DISK', 1, N'/var/opt/mssql/backup/SuperHeroDB_Log.bak',
+DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+WHERE [Transaction Name] IS NOT NULL;
+*/
+
+[
+  {
+    "Operation": "LOP_BEGIN_XACT",
+    "Begin Time": "2017/05/12 02:43:59:467",
+    "Current LSN": "00000024:00000140:0001",
+    "Transaction ID": "0000:00000300",
+    "Transaction Name": "Backup:CommitDifferentialBase",
+    "PartitionID": null,
+    "TRANSACTION SID": "0x01"
+  },
+  {
+    "Operation": "LOP_BEGIN_XACT",
+    "Begin Time": "2017/05/12 02:43:59:503",
+    "Current LSN": "00000024:00000158:0001",
+    "Transaction ID": "0000:00000301",
+    "Transaction Name": "INSERT",
+    "PartitionID": null,
+    "TRANSACTION SID": "0x01"
+  },
+  {
+    "Operation": "LOP_BEGIN_XACT",
+    "Begin Time": "2017/05/12 02:43:59:503",
+    "Current LSN": "00000024:00000158:0003",
+    "Transaction ID": "0000:00000302",
+    "Transaction Name": "Allocate Root",
+    "PartitionID": null,
+    "TRANSACTION SID": "0x01"
+  },
+  {
+    "Operation": "LOP_BEGIN_XACT",
+    "Begin Time": "2017/05/12 02:43:59:503",
+    "Current LSN": "00000024:00000158:0004",
+    "Transaction ID": "0000:00000303",
+    "Transaction Name": "AllocFirstPage",
+    "PartitionID": null,
+    "TRANSACTION SID": "0x01"
+  },
+  {
+    "Operation": "LOP_BEGIN_XACT",
+    "Begin Time": "2017/05/12 02:44:11:947",
+    "Current LSN": "00000024:00000160:000c",
+    "Transaction ID": "0000:00000304",
+    "Transaction Name": "TRUNCATE TABLE",
+    "PartitionID": null,
+    "TRANSACTION SID": "0x01"
+  }
+]
