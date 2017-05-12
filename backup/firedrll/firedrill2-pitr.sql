@@ -76,7 +76,7 @@ GO
 -- Insert some more information 
 INSERT INTO [dbo].[Heroes]([HeroId],[FirstName],[LastName],[Email],[City],[MobileNumber])
 VALUES
-(6, 'Gildong', 'Hong', 'honggildong@outlook.com', 'Seoul', '010332022')
+(6, 'Gil-dong', 'Hong', 'honggildong@outlook.com', 'Seoul', '010332022')
 GO
 SELECT [FirstName], [LastName], [Email], [MobileNumber] FROM Heroes;
 GO
