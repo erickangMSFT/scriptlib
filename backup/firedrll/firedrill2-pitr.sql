@@ -5,12 +5,24 @@
 -- Prep
 --
 
+-- clean up
 USE [master]
 GO
 ALTER DATABASE [SuperHeroDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 GO
 DROP DATABASE IF EXISTS [SuperHeroDB];
 GO
+
+ALTER DATABASE [SuperHeroDB_Tail] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
+DROP DATABASE IF EXISTS [SuperHeroDB_Tail];
+GO
+
+-- in Terminal, run following commands
+-- docker exec -i -t b855c869a707 /bin/bash
+-- rm -rf /var/opt/mssql/backup/SuperHeroDB*
+
+-- init
 CREATE DATABASE [SuperHeroDB];
 GO
 
