@@ -108,7 +108,7 @@ WITH NORECOVERY;
 -- Restore log backup STOPAT 
 RESTORE LOG [SuperHeroDB]
 FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Log.bak'
-WITH NORECOVERY, STOPAT = N'2017-05-12T01:44:00'; -- This is UTC time
+WITH NORECOVERY, STOPAT = N'2017-05-12T02:44:00'; -- This is UTC time
 
 -- Finish Restore
 RESTORE DATABASE [SuperHeroDB]
@@ -130,7 +130,7 @@ MOVE N'SuperHeroDB_log' TO N'/var/opt/mssql/data/SuperHeroDB_Tail.ldf';
 -- Restore log backup STOPAT 
 RESTORE LOG [SuperHeroDB_Tail]
 FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Log.bak'
-WITH NORECOVERY; -- This is UTC time
+WITH NORECOVERY;
 
 -- Restore tail-log backup 
 RESTORE LOG [SuperHeroDB_Tail]
