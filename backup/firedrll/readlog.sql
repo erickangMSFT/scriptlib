@@ -89,6 +89,9 @@ WHERE [Transaction ID] = '0000:00000302'
 GO
 
 -- Reading from log backup
+RESTORE HEADERONLY FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Log.bak';
+RESTORE HEADERONLY FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Log_Tail.bak';
+
 SELECT  [Operation],
         [Begin Time], 
         [Current LSN], 
