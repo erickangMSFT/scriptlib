@@ -1,6 +1,7 @@
 --
 -- This firedrill script is based on 
 -- SQL Server 2017 running on Docker container / Linux host.
+-- Scenario: Recover database from file corruption
 -- Credit and the original tutorial: https://www.sqlskills.com/blogs/paul/disaster-recovery-101-backing-up-the-tail-of-the-log/ 
  
 -- Drop the database 'FiredrillDB'
