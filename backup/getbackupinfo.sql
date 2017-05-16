@@ -2,6 +2,10 @@
 --Author: Eric Kang
 
 Restore Labelonly from disk = 'G:\sqlbackups\Device1\AdventureworkdDevice1.bak'
+Restore Labelonly from disk = 'G:\sqlbackups\Device2\AdventureworksDevice2.bak'
+Restore Labelonly from disk = 'G:\sqlbackups\Device3\AdventureworksDevice3.bak'
+
+
 Restore Headeronly from disk = 'G:\sqlbackups\Device1\AdventureworkdDevice1.bak'
 Restore Filelistonly from disk = 'G:\sqlbackups\Device1\AdventureworkdDevice1.bak'
 Restore Verifyonly from DISK = N'G:\sqlbackups\Device1\AdventureworkdDevice1.bak',  
