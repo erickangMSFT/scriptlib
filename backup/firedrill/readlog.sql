@@ -1,6 +1,7 @@
 USE master
 GO
 -- Uncomment the ALTER DATABASE statement below to set the database to SINGLE_USER mode if the drop database command fails because the database is in use.
+
 ALTER DATABASE SuperHeroDB_Read_Log SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 -- Drop the database if it exists
 IF EXISTS (
@@ -12,11 +13,13 @@ DROP DATABASE SuperHeroDB_Read_Log
 GO
 CREATE DATABASE [SuperHeroDB_Read_Log];
 GO
+
 USE [SuperHeroDB_Read_Log];
 GO
 -- Create Hero table
 CREATE TABLE [dbo].[Heroes]
 (
+
         [HeroId] [int] NOT NULL,
         [FirstName] [nvarchar](50) NOT NULL,
         [LastName] [nvarchar](50) NOT NULL,
@@ -64,6 +67,7 @@ RESTORE HEADERONLY FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Log.bak';
 RESTORE HEADERONLY FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Log_Tail.bak';
 -- undocumented fucntion: fn_dump_dblog
 SELECT [Operation], [Begin Time], [Current LSN], [Transaction ID], [Transaction Name], [PartitionID], [TRANSACTION SID]
+
 FROM fn_dump_dblog (NULL, NULL, N'DISK', 1, N'/var/opt/mssql/backup/SuperHeroDB_Log.bak',
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
