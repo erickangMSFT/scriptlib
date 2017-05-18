@@ -1,0 +1,54 @@
+[
+  {
+    "event_time": "2017-05-17 06:25:18.9483455",
+    "action_id": "AUSC",
+    "succeeded": "1",
+    "database_name": "",
+    "schema_name": "",
+    "object_name": "",
+    "client_ip": "172.17.0.1",
+    "application_name": "",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": ""
+  },
+  {
+    "event_time": "2017-05-18 02:23:37.2253034",
+    "action_id": "LGIS",
+    "succeeded": "1",
+    "database_name": "",
+    "schema_name": "",
+    "object_name": "",
+    "client_ip": "172.17.0.1",
+    "application_name": "vscode-mssql",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "-- network protocol: TCP/IP\r\nset quoted_identifier on\r\nset arithabort off\r\nset numeric_roundabort off\r\nset ansi_warnings on\r\nset ansi_padding on\r\nset ansi_nulls on\r\nset concat_null_yields_null on\r\nset cursor_close_on_commit off\r\nset implicit_transactions off\r\nset language us_english\r\nset dateformat mdy\r\nset datefirst 7\r\nset transaction isolation level read committed\r\n"
+  },
+  {
+    "event_time": "2017-05-18 02:28:48.8922578",
+    "action_id": "LGIF",
+    "succeeded": "0",
+    "database_name": "",
+    "schema_name": "",
+    "object_name": "",
+    "client_ip": "172.17.0.1",
+    "application_name": "carbon",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "Login failed for user 'sa'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]"
+  },
+  {
+    "event_time": "2017-05-18 02:29:03.8942286",
+    "action_id": "LGIS",
+    "succeeded": "1",
+    "database_name": "",
+    "schema_name": "",
+    "object_name": "",
+    "client_ip": "172.17.0.1",
+    "application_name": "vscode-mssql",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "-- network protocol: TCP/IP\r\nset quoted_identifier on\r\nset arithabort off\r\nset numeric_roundabort off\r\nset ansi_warnings on\r\nset ansi_padding on\r\nset ansi_nulls on\r\nset concat_null_yields_null on\r\nset cursor_close_on_commit off\r\nset implicit_transactions off\r\nset language us_english\r\nset dateformat mdy\r\nset datefirst 7\r\nset transaction isolation level read committed\r\n"
+  }
+]
