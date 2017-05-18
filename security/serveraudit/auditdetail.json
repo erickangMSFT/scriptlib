@@ -1,0 +1,9 @@
+[
+  {
+    "audit_id": "65536",
+    "name": "CarbonAudit",
+    "create_date": "2017-05-17 06:23:09.470",
+    "modify_date": "2017-05-17 06:23:09.470",
+    "auditlog_file_name": "/var/opt/mssql/auditlog/CarbonAudit_FC062890-A102-46B3-83CC-CD148AB70EB2.sqlaudit"
+  }
+]

@@ -5,10 +5,22 @@ USE master;
 GO
 
 -- Get audit detail
-SELECT * FROM sys.server_audits
+SELECT 
+    audit_id,
+    name,
+    create_date,
+    modify_date,
+    on_failure_desc
+FROM sys.server_audits
 
 -- Get audit file detail
-SELECT * FROM sys.server_file_audits
+SELECT 
+    audit_id,
+    name,
+    create_date,
+    modify_date,
+    log_file_path + log_file_name auditlog_file_name
+FROM sys.server_file_audits
 
 -- Read audit file
 SELECT 
