@@ -7,3 +7,6 @@ ADD (SELECT ON OBJECT::[Person].[EmailAddress] BY [db_owner])
 WITH ( STATE = ON );
 GO
 
+--
+SELECT * FROM [Person].[EmailAddress];
+GO
