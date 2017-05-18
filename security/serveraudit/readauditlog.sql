@@ -33,6 +33,7 @@ SELECT
     server_principal_name, database_principal_name,
     [statement]
 FROM sys.fn_get_audit_file ('/var/opt/mssql/auditlog/CarbonAudit_FC062890-A102-46B3-83CC-CD148AB70EB2_0_131394759189390000.sqlaudit',default,default)    
-WHERE succeeded = 0
+-- filter for failed login
+-- WHERE succeeded = 0 
 GO  
 
