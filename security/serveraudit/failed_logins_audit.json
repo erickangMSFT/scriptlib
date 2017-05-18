@@ -1,0 +1,68 @@
+[
+  {
+    "event_time": "2017-05-17 08:14:31.7736791",
+    "action_id": "LGIF",
+    "succeeded": "0",
+    "object name": "..",
+    "client_ip": "172.17.0.1",
+    "application_name": "carbon",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "Login failed for user 'sa'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]"
+  },
+  {
+    "event_time": "2017-05-17 08:18:41.9254992",
+    "action_id": "LGIF",
+    "succeeded": "0",
+    "object name": "..",
+    "client_ip": "172.17.0.1",
+    "application_name": "carbon",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "Login failed for user 'sa'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]"
+  },
+  {
+    "event_time": "2017-05-17 08:19:25.1849331",
+    "action_id": "LGIF",
+    "succeeded": "0",
+    "object name": "..",
+    "client_ip": "172.17.0.1",
+    "application_name": "carbon",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "Login failed for user 'sa'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]"
+  },
+  {
+    "event_time": "2017-05-17 08:19:26.2510628",
+    "action_id": "LGIF",
+    "succeeded": "0",
+    "object name": "..",
+    "client_ip": "172.17.0.1",
+    "application_name": "carbon",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "Login failed for user 'sa'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]"
+  },
+  {
+    "event_time": "2017-05-17 23:02:06.7500870",
+    "action_id": "LGIF",
+    "succeeded": "0",
+    "object name": "..",
+    "client_ip": "172.17.0.1",
+    "application_name": "carbon",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "Login failed for user 'sa'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]"
+  },
+  {
+    "event_time": "2017-05-18 02:28:48.8922578",
+    "action_id": "LGIF",
+    "succeeded": "0",
+    "object name": "..",
+    "client_ip": "172.17.0.1",
+    "application_name": "carbon",
+    "server_principal_name": "sa",
+    "database_principal_name": "",
+    "statement": "Login failed for user 'sa'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]"
+  }
+]
