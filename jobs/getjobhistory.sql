@@ -14,5 +14,6 @@ select
     h.run_duration
 from dbo.sysjobhistory h
 left join dbo.sysjobs j on h.job_id = j.job_id 
-where h.sql_severity >= 11
+-- where h.sql_severity >= 11 
+-- where h.job_id = '26aef7ef-f2bf-45bb-b012-402984adf226'
 order by h.run_date DESC
