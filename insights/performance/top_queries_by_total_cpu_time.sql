@@ -25,4 +25,3 @@ from sys.dm_exec_query_stats  qs
 cross apply sys.dm_exec_sql_text(sql_handle) st
 where total_worker_time > 0
 order by total_worker_time  desc
- 
