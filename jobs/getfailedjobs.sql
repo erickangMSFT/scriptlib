@@ -1,4 +1,6 @@
 --Source: https://stackoverflow.com/questions/10577676/how-to-obtain-failed-jobs-from-sql-server-agent-through-script
+use msdb
+GO
 
 SELECT Job.instance_id, SysJobs.job_id, SysJobs.name as 'JOB_NAME', SysJobSteps.step_name as 'STEP_NAME', Job.run_status, Job.sql_message_id, Job.sql_severity, Job.message, Job.exec_date, Job.run_duration, Job.server, SysJobSteps.output_file_name
 FROM (
