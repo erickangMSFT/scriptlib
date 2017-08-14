@@ -15,3 +15,4 @@ NAME = N'AdventureWorks-Full Database Backup',
 STATS = 10, CHECKSUM
 GO
 
+select * from msdb..backupset

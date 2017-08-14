@@ -61,7 +61,7 @@ FROM master..sysdatabases AS DB
 LEFT JOIN msdb..backupset AS BK ON DB.name = BK.database_name
 LEFT JOIN msdb..backupmediafamily AS MD ON BK.media_set_id = MD.media_set_id
 WHERE BK.[type] IS NOT NULL --AND BK.[type] = 'D'
-AND DB.[dbid] > 4 and DB.name NOT LIKE 'ReportServer%'
+--AND DB.[dbid] > 4 and DB.name NOT LIKE 'ReportServer%'
 GROUP BY DB.name, BK.[type]
 ORDER BY [MACHINE NAME], MAX(BK.backup_start_date) DESC, DB.name
 GO
