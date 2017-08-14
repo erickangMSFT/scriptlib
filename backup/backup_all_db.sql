@@ -2,6 +2,7 @@
 -- source: https://www.mssqltips.com/sqlservertip/1070/simple-script-to-backup-all-sql-server-databases/
 -- source: https://stackoverflow.com/questions/1578198/can-i-loop-through-a-table-variable-in-t-sql
 -- modified to switch cursor to table variable
+
 DECLARE @name VARCHAR(50)
 -- database name  
 DECLARE @path VARCHAR(256)

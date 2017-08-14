@@ -21,7 +21,6 @@ IF EXISTS (
 DROP DATABASE FiredrillDB
 GO
 
-
 CREATE DATABASE [FiredrillDB];
 GO
 USE [FiredrillDB];

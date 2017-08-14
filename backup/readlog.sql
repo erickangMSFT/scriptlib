@@ -1,11 +1,10 @@
 USE master
 GO
 -- Uncomment the ALTER DATABASE statement below to set the database to SINGLE_USER mode if the drop database command fails because the database is in use.
-
 ALTER DATABASE SuperHeroDB_Read_Log SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 -- Drop the database if it exists
 IF EXISTS (
-  SELECT name
+SELECT name
 FROM sys.databases
 WHERE name = N'SuperHeroDB_Read_Log'
 )
@@ -13,13 +12,11 @@ DROP DATABASE SuperHeroDB_Read_Log
 GO
 CREATE DATABASE [SuperHeroDB_Read_Log];
 GO
-
 USE [SuperHeroDB_Read_Log];
 GO
 -- Create Hero table
 CREATE TABLE [dbo].[Heroes]
 (
-
         [HeroId] [int] NOT NULL,
         [FirstName] [nvarchar](50) NOT NULL,
         [LastName] [nvarchar](50) NOT NULL,
@@ -27,6 +24,9 @@ CREATE TABLE [dbo].[Heroes]
         [City] [nvarchar](50) NULL,
         [MobileNumber] [nvarchar](50) NOT NULL PRIMARY KEY CLUSTERED ([HeroId] ASC) ON [PRIMARY]
 );
+GO
+-- Fullbackup
+BACKUP DATABASE [SuperHeroDB_Read_Log] TO DISK = N'/var/opt/mssql/backup/SuperHeroDB_Read_Log.bak' WITH INIT;
 GO
 -- Insert sample data into 'Heroes' table
 INSERT INTO [dbo].[Heroes]
@@ -47,6 +47,9 @@ GO
 SELECT [FirstName], [LastName], [Email], [MobileNumber]
 FROM Heroes;
 GO
+-- Taks a transaction log backup
+BACKUP LOG [SuperHeroDB_Read_Log] TO DISK = N'/var/opt/mssql/backup/SuperHeroDB_Read_Log_Log1.bak' WITH INIT;
+GO
 -- Insert some more information 
 INSERT INTO [dbo].[Heroes]
         ([HeroId],[FirstName],[LastName],[Email],[City],[MobileNumber])
@@ -56,6 +59,9 @@ GO
 SELECT [FirstName], [LastName], [Email], [MobileNumber]
 FROM Heroes;
 GO
+-- Taks a transaction log backup
+--BACKUP LOG [SuperHeroDB_Read_Log] TO DISK = N'/var/opt/mssql/backup/SuperHeroDB_Read_Log_Log2.bak' WITH INIT;
+--GO
 -- Reading from online log
 SELECT log.[Operation], log.[Current LSN], log.[Begin Time], log.[Transaction ID], log.[Transaction Name], log.[AllocUnitId], log.[AllocUnitName], log.[Description]
 FROM fn_dblog(null, null) log
@@ -63,15 +69,23 @@ WHERE [Transaction Name] IS NOT NULL
 ORDER BY log.[AllocUnitId]
 GO
 -- Reading from log backup
-RESTORE HEADERONLY FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Log.bak';
-RESTORE HEADERONLY FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Log_Tail.bak';
+RESTORE HEADERONLY FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Read_Log_Log1.bak';
+--RESTORE HEADERONLY FROM DISK = N'/var/opt/mssql/backup/SuperHeroDB_Read_Log_Log2.bak';
 -- undocumented fucntion: fn_dump_dblog
-SELECT [Operation], [Begin Time], [Current LSN], [Transaction ID], [Transaction Name], [PartitionID], [TRANSACTION SID]
-
-FROM fn_dump_dblog (NULL, NULL, N'DISK', 1, N'/var/opt/mssql/backup/SuperHeroDB_Log.bak',
+        SELECT [Operation], [Begin Time], [Current LSN], [Transaction ID], [Transaction Name], [PartitionID], [TRANSACTION SID]
+        FROM fn_dump_dblog (NULL, NULL, N'DISK', 1, N'/var/opt/mssql/backup/SuperHeroDB_Read_Log_Log1.bak',
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
-WHERE [Transaction Name] IS NOT NULL;
+        WHERE [Transaction Name] IS NOT NULL
+-- UNION
+--         SELECT [Operation], [Begin Time], [Current LSN], [Transaction ID], [Transaction Name], [PartitionID], [TRANSACTION SID]
+--         FROM fn_dump_dblog (NULL, NULL, N'DISK', 1, N'/var/opt/mssql/backup/SuperHeroDB_Read_Log_Log2.bak',
+-- DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+-- DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+-- DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+-- DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+-- DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+--         WHERE [Transaction Name] IS NOT NULL;
