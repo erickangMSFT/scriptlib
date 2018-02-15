@@ -1,5 +1,6 @@
 
 
+
 -- Get backup status for all databases
 USE master;
 GO
@@ -25,3 +26,13 @@ AND DB.[dbid] > 4 and DB.name NOT LIKE 'ReportServer%'
 GROUP BY DB.name, BK.[type]
 ORDER BY [MACHINE NAME], MAX(BK.backup_start_date) DESC, DB.name
 GO
+
+--Description: Sample restore statement to migrate AdventureWorks from Windows to Linux.
+--Author: Eric Kang
+
+RESTORE DATABASE [AdventureWorks]
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorks.bak'
+WITH FILE = 2,
+MOVE N'AdventureWorks2014_Data' TO N'/var/opt/mssql/data/AdventureWorks.mdf',
+MOVE N'AdventureWorks2014_Log' TO N'/var/opt/mssql/data/AdventureWorks.ldf'
+
