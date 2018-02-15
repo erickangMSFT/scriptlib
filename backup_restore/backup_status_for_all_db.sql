@@ -4,8 +4,6 @@
 -- Get backup status for all databases
 USE master;
 GO
-DECLARE @HOURS tinyint
-SET @HOURS = 22
 SELECT
     SERVERPROPERTY('MachineName') AS [MACHINE NAME],
     SERVERPROPERTY('InstanceName') AS INSTANCE,
@@ -19,10 +17,7 @@ SELECT
         WHEN BK.[type] = 'P' THEN 'PARTIAL'
         WHEN BK.[type] = 'Q' THEN 'DIFFERENTIAL PARTIAL'
     END AS [BACKUP TYPE],
-    MAX(BK.backup_start_date) AS [LAST BACKUP],
-    CASE
-        WHEN (DATEDIFF( HH , MAX(BK.backup_start_date) , GETDATE()) < @HOURS) THEN 'Compliant' ELSE 'Incompliant'
-    END AS Compliance
+    MAX(BK.backup_start_date) AS [LAST BACKUP]
 FROM master..sysdatabases AS DB
 LEFT JOIN msdb..backupset AS BK ON DB.name = BK.database_name
 LEFT JOIN msdb..backupmediafamily AS MD ON BK.media_set_id = MD.media_set_id
