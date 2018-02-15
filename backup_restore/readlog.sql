@@ -42,6 +42,11 @@ GO
 SELECT [FirstName], [LastName], [Email], [MobileNumber]
 FROM Heroes;
 GO
+
+
+BACKUP LOG [SuperHeroDB_Read_Log] TO DISK = N'/var/opt/mssql/backup/SuperHeroDB_Read_Log_Log0.bak' WITH INIT;
+GO
+
 DELETE FROM Heroes;
 GO
 SELECT [FirstName], [LastName], [Email], [MobileNumber]
